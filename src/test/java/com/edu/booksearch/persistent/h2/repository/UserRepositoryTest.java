@@ -1,5 +1,6 @@
 package com.edu.booksearch.persistent.h2.repository;
 
+import com.edu.booksearch.BookSearchApplication;
 import com.edu.booksearch.persistent.h2.entity.UserEntity;
 import com.edu.booksearch.util.PasswordEncoding;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+@SpringBootTest(classes = {BookSearchApplication.class})
 class UserRepositoryTest {
 
     @BeforeEach

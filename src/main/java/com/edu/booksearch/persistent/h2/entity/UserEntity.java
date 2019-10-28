@@ -10,12 +10,12 @@ import javax.persistence.*;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_no", columnDefinition = "사용자_번호")
+    @Column(name = "user_no")
     private long userNo;
 
-    @Column(name = "id", nullable = false, unique = true, length = 30, columnDefinition = "사용자_로그인_아이디")
+    @Column(name = "id", nullable = false, unique = true, length = 30)
     private String id;
 
-    @Column(name = "password", nullable = false, columnDefinition = "사용자_로그인_비밀번호")
+    @Column(name = "password", nullable = false)
     private String password;
 }
