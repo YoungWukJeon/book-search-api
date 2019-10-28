@@ -22,9 +22,8 @@ class PasswordEncodingTest {
         String encodedPassword1 = passwordEncoding.encode(rawPassword1);
 
         String rawPassword2 = "testPass123!!";
-        String encodedPassword2 = passwordEncoding.encode(rawPassword2);
 
-        assertEquals(rawPassword1, rawPassword2);
+        assertTrue(passwordEncoding.matches(rawPassword2, encodedPassword1));
     }
 
     @Test
@@ -33,11 +32,7 @@ class PasswordEncodingTest {
         String encodedPassword1 = passwordEncoding.encode(rawPassword1);
 
         String rawPassword2 = "testPass125!!";
-        String encodedPassword2 = passwordEncoding.encode(rawPassword2);
 
-        System.out.println(rawPassword1+ " -> " + encodedPassword1);
-        System.out.println(rawPassword2+ " -> " + encodedPassword2);
-
-        assertEquals(rawPassword1, rawPassword2);
+        assertTrue(passwordEncoding.matches(rawPassword2, encodedPassword1));
     }
 }

@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan(basePackages = {"com.edu.booksearch.util"})
+@ComponentScan(basePackages = {"com.edu.booksearch.util", "com.edu.booksearch.service"})
 @SpringBootApplication
 public class BookSearchApplication {
 
