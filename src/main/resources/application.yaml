@@ -6,7 +6,6 @@ spring:
     console:
       enabled: true
 
-
   datasource:
     platform: h2
     driver-class-name: org.h2.Driver
@@ -20,3 +19,7 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
+
+book-search:
+  kakao-api:
+    url: https://dapi.kakao.com/v3/search/book
