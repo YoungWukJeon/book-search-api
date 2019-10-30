@@ -9,21 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 
-@SpringBootApplication(scanBasePackages = {"com.edu.booksearch.util", "com.edu.booksearch.service"})
+@SpringBootApplication(scanBasePackages = {"com.edu.booksearch.util", "com.edu.booksearch.service", "com.edu.booksearch.external"})
 public class BookSearchApplication {
-
-	@Value("${book-search.kakao-api.url}")
-	String kakaoApiUrl;
-
-	@Bean
-	public KakaoBookSearchApiClient kakaoBookSearchApiClient() {
-		return new KakaoBookSearchApiClient(new RestTemplate(), kakaoApiUrl);
-	}
-
-	@Bean
-	public DateTimeUtil dateTimeUtil() {
-		return new DateTimeUtil();
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(BookSearchApplication.class, args);

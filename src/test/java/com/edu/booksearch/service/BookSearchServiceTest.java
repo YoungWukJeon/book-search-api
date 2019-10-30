@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -70,9 +71,10 @@ class BookSearchServiceTest {
         SearchResultDto searchResultDto = new SearchResultDto();
         searchResultDto.setTitle("testTitle");
         searchResultDto.setThumbnail("test.thumbnail.com");
-        searchResultDto.setAuthor("testAuthor1, testAuthor2");
+        List<String> authors = Arrays.asList("testAuthor1", "testAuthor2");
+        searchResultDto.setAuthor(authors);
         searchResultDto.setContent("testContent1");
-        searchResultDto.setPublishingDate(dateTimeUtil.kakaoDateParser("2014-11-17T00:00:00.000+09:00"));
+        searchResultDto.setPublishingDate("2014-11-17T00:00:00.000+09:00");
         searchResultDto.setIsbn("8996991341 9788996991342");
         searchResultDto.setPublisher("testPublisher");
         searchResultDto.setPrice(13500);

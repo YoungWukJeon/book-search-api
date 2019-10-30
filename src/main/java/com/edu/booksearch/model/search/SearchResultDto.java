@@ -1,8 +1,11 @@
 package com.edu.booksearch.model.search;
 
+import com.edu.booksearch.util.DateTimeUtil;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class SearchResultDto {
@@ -15,4 +18,12 @@ public class SearchResultDto {
     private LocalDateTime publishingDate;
     private int price;
     private int salePrice;
+
+    public void setAuthor(List<String> authors) {
+        this.author = authors.stream().collect(Collectors.joining(", "));
+    }
+
+    public void setPublishingDate(String datetime) {
+        this.publishingDate = DateTimeUtil.kakaoDateParser(datetime);
+    }
 }

@@ -15,8 +15,6 @@ import java.util.stream.Collectors;
 public class BookSearchService {
     @Autowired
     private KakaoBookSearchApiClient kakaoBookSearchApiClient;
-    @Autowired
-    private DateTimeUtil dateTimeUtil;
 
     public BookSearchResponseDto searchBook(BookSearchRequestDto bookSearchRequestDto) {
         BookSearchResponseDto bookSearchResponseDto = new BookSearchResponseDto();
@@ -37,21 +35,18 @@ public class BookSearchService {
     }
 
     private List<SearchResultDto> extractSearchResults(KakaoApiResponseDto kakaoApiResponseDto) {
-        List<SearchResultDto> searchResultDtos = new ArrayList<> ();
-
-        kakaoApiResponseDto.getDocuments().stream().forEach(doc -> {
+        return kakaoApiResponseDto.getDocuments().stream().map(doc -> {
             SearchResultDto searchResultDto = new SearchResultDto();
             searchResultDto.setTitle(doc.getTitle());
             searchResultDto.setThumbnail(doc.getThumbnail());
             searchResultDto.setContent(doc.getContents());
             searchResultDto.setIsbn(doc.getIsbn());
-            searchResultDto.setAuthor(doc.getAuthors().stream().map(author -> String.valueOf(author)).collect(Collectors.joining(", ")));
+            searchResultDto.setAuthor(doc.getAuthors());
             searchResultDto.setPublisher(doc.getPublisher());
-            searchResultDto.setPublishingDate(dateTimeUtil.kakaoDateParser(doc.getDatetime()));
+            searchResultDto.setPublishingDate(doc.getDatetime());
             searchResultDto.setPrice(doc.getPrice());
             searchResultDto.setSalePrice(doc.getSalePrice());
-            searchResultDtos.add(searchResultDto);
-        });
-        return searchResultDtos;
+            return searchResultDto;
+        }).collect(Collectors.toList());
     }
 }
