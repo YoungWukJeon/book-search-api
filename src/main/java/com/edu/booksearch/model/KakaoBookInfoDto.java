@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class BookInfoDto {
+public class KakaoBookInfoDto {
 
     @JsonProperty(value = "title")
     private String title;   // 제목

@@ -1,6 +1,7 @@
 package com.edu.booksearch;
 
 import com.edu.booksearch.external.KakaoBookSearchApiClient;
+import com.edu.booksearch.util.DateTimeUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,14 +15,14 @@ public class BookSearchApplication {
 	@Value("${book-search.kakao-api.url}")
 	String kakaoApiUrl;
 
-//	@Bean
-//	public RestTemplate restTemplate() {
-//		return new RestTemplate();
-//	}
-
 	@Bean
 	public KakaoBookSearchApiClient kakaoBookSearchApiClient() {
 		return new KakaoBookSearchApiClient(new RestTemplate(), kakaoApiUrl);
+	}
+
+	@Bean
+	public DateTimeUtil dateTimeUtil() {
+		return new DateTimeUtil();
 	}
 
 	public static void main(String[] args) {
