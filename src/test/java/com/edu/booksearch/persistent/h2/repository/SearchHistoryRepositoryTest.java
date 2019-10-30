@@ -11,8 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class SearchHistoryRepositoryTest {
 
@@ -21,11 +19,12 @@ class SearchHistoryRepositoryTest {
     @Autowired
     private UserRepository userRepository;
     private PasswordEncoding passwordEncoding = new PasswordEncoding();
+    private UserEntity userEntity;
 
     @BeforeEach
     void setUp() {
         SearchHistoryEntity searchHistoryEntity = new SearchHistoryEntity();
-        UserEntity userEntity = new UserEntity();
+        userEntity = new UserEntity();
         userEntity.setId("testUser");
         userEntity.setPassword(passwordEncoding.encode("testPassword"));
         userRepository.save(userEntity);
@@ -41,5 +40,11 @@ class SearchHistoryRepositoryTest {
     @Transactional
     void 모든_검색_내용_조회() {
         searchHistoryRepository.findAll().forEach(System.out::println);
+    }
+
+    @Test
+    @Transactional
+    void 특정_사용자_검색_내용_조회() {
+        searchHistoryRepository.findByUserEntity(userEntity).forEach(System.out::println);
     }
 }
