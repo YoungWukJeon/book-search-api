@@ -45,6 +45,6 @@ class SearchHistoryRepositoryTest {
     @Test
     @Transactional
     void 특정_사용자_검색_내용_조회() {
-        searchHistoryRepository.findByUserEntity(userEntity).forEach(System.out::println);
+        searchHistoryRepository.findByUserEntityOrderBySearchDateTimeDesc(userEntity).forEach(System.out::println);
     }
 }

@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface SearchHistoryRepository extends JpaRepository<SearchHistoryEntity, Long> {
-    List<SearchHistoryEntity> findByUserEntity(UserEntity userEntity);
+    List<SearchHistoryEntity> findByUserEntityOrderBySearchDateTimeDesc(UserEntity userEntity);
 }
