@@ -1,6 +1,6 @@
 package com.edu.booksearch.external;
 
-import com.edu.booksearch.model.KakaoApiResponseDto;
+import com.edu.booksearch.model.search.kakao.KakaoApiResponseDto;
 import org.springframework.http.RequestEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;

@@ -1,6 +1,9 @@
 package com.edu.booksearch.service;
 
-import com.edu.booksearch.model.*;
+import com.edu.booksearch.model.search.*;
+import com.edu.booksearch.model.search.kakao.KakaoApiResponseDto;
+import com.edu.booksearch.model.search.kakao.KakaoBookInfoDto;
+import com.edu.booksearch.model.search.kakao.KakaoBookMetaDto;
 import com.edu.booksearch.util.DateTimeUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,12 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 

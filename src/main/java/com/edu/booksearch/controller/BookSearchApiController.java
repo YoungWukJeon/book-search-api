@@ -1,7 +1,7 @@
 package com.edu.booksearch.controller;
 
-import com.edu.booksearch.model.BookSearchRequestDto;
-import com.edu.booksearch.model.BookSearchResponseDto;
+import com.edu.booksearch.model.search.BookSearchRequestDto;
+import com.edu.booksearch.model.search.BookSearchResponseDto;
 import com.edu.booksearch.service.BookSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
