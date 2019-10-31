@@ -1,8 +1,7 @@
 package com.edu.booksearch.persistent.h2.entity;
 
-import lombok.AccessLevel;
+import com.edu.booksearch.util.PasswordEncoding;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -26,4 +25,9 @@ public class UserEntity {
     @OneToMany(targetEntity = SearchHistoryEntity.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_no")
     private List<SearchHistoryEntity> searchHistoryEntities = new ArrayList<> ();
+
+    public void setPassword(String password) {
+        PasswordEncoding passwordEncoding = new PasswordEncoding();
+        this.password = passwordEncoding.encode(password);
+    }
 }

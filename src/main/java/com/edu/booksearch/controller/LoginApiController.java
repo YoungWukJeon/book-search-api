@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController("/api/v1/login")
 public class LoginApiController {
-
     @Autowired
     private LoginService loginService;
 
