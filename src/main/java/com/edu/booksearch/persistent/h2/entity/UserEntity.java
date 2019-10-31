@@ -25,9 +25,4 @@ public class UserEntity {
     @OneToMany(targetEntity = SearchHistoryEntity.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_no")
     private List<SearchHistoryEntity> searchHistoryEntities = new ArrayList<> ();
-
-    public void setPassword(String password) {
-        PasswordEncoding passwordEncoding = new PasswordEncoding();
-        this.password = passwordEncoding.encode(password);
-    }
 }

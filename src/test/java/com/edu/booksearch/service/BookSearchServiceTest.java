@@ -4,17 +4,16 @@ import com.edu.booksearch.model.search.*;
 import com.edu.booksearch.model.search.kakao.KakaoApiResponseDto;
 import com.edu.booksearch.model.search.kakao.KakaoBookInfoDto;
 import com.edu.booksearch.model.search.kakao.KakaoBookMetaDto;
-import com.edu.booksearch.persistent.h2.entity.SearchCountEntity;
 import com.edu.booksearch.persistent.h2.entity.UserEntity;
 import com.edu.booksearch.persistent.h2.repository.SearchCountRepository;
 import com.edu.booksearch.persistent.h2.repository.SearchHistoryRepository;
 import com.edu.booksearch.persistent.h2.repository.UserRepository;
-import com.edu.booksearch.util.DateTimeUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import javax.transaction.Transactional;
@@ -24,6 +23,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Transactional
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @SpringBootTest
 class BookSearchServiceTest {
     private KakaoApiResponseDto kakaoApiResponseDto;
@@ -96,7 +97,6 @@ class BookSearchServiceTest {
     }
 
     @Test
-    @Transactional
     void 검색_기록_입력() {
         long userNo = 1L;
         String query = "미움받을 용기";
@@ -110,12 +110,11 @@ class BookSearchServiceTest {
     }
 
     @Test
-    @Transactional
     void 로그인된_사용자의_책_검색_요청() {
         UserEntity userEntity = new UserEntity();
         userEntity.setId("testUser");
         userEntity.setPassword("testPass");
-        userRepository.save(userEntity);
+        userRepository.saveAndFlush(userEntity);
 
         BookSearchRequestDto bookSearchRequestDto = new BookSearchRequestDto();
         bookSearchRequestDto.setQuery("미움받을 용기");

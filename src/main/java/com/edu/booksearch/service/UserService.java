@@ -25,9 +25,10 @@ public class UserService {
             registrationResponseDto.setCode(201);
             registrationResponseDto.setMessage("IdExists");
         } else {
+            PasswordEncoding passwordEncoding = new PasswordEncoding();
             UserEntity userEntity = new UserEntity();
             userEntity.setId(id);
-            userEntity.setPassword(password);
+            userEntity.setPassword(passwordEncoding.encode(password));
             userRepository.save(userEntity);
             registrationResponseDto.setCode(200);
             registrationResponseDto.setMessage("RegistrationSuccess");
