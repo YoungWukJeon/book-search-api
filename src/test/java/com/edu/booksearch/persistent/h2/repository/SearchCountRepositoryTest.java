@@ -15,7 +15,6 @@ import java.util.List;
 
 @SpringBootTest
 class SearchCountRepositoryTest {
-
     @Autowired
     private SearchCountRepository searchCountRepository;
 

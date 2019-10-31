@@ -1,4 +1,4 @@
-package com.edu.booksearch.model.search;
+package com.edu.booksearch.model.search.history;
 
 import lombok.Data;
 

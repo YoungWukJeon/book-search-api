@@ -1,9 +1,8 @@
 package com.edu.booksearch.service;
 
-import com.edu.booksearch.model.search.BookSearchHistoryResponseDto;
+import com.edu.booksearch.model.search.history.BookSearchHistoryResponseDto;
 import com.edu.booksearch.persistent.h2.entity.SearchHistoryEntity;
 import com.edu.booksearch.persistent.h2.entity.UserEntity;
-import com.edu.booksearch.persistent.h2.repository.SearchHistoryRepository;
 import com.edu.booksearch.persistent.h2.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

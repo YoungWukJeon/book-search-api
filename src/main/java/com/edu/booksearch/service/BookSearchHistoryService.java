@@ -1,15 +1,11 @@
 package com.edu.booksearch.service;
 
-import com.edu.booksearch.model.search.BookSearchHistoryResponseDto;
-import com.edu.booksearch.persistent.h2.entity.SearchHistoryEntity;
+import com.edu.booksearch.model.search.history.BookSearchHistoryResponseDto;
 import com.edu.booksearch.persistent.h2.entity.UserEntity;
-import com.edu.booksearch.persistent.h2.repository.SearchHistoryRepository;
 import com.edu.booksearch.persistent.h2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
