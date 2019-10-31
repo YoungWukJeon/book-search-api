@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/api/v1/book")
+@RestController
+@RequestMapping(value = "/api/v1/book")
 public class BookSearchApiController {
     @Autowired
     private BookSearchService bookSearchService;
@@ -21,7 +22,7 @@ public class BookSearchApiController {
     @Autowired
     private BookSearchCountService bookSearchCountService;
 
-    @PostMapping("/search")
+    @GetMapping("/search")
     public BookSearchResponseDto searchBook(@RequestParam BookSearchRequestDto bookSearchRequestDto) {
         return bookSearchService.searchBook(bookSearchRequestDto);
     }

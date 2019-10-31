@@ -7,10 +7,12 @@ import com.edu.booksearch.persistent.h2.repository.UserRepository;
 import com.edu.booksearch.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/api/v1/login")
+@RestController
+@RequestMapping(value = "/api/v1/login")
 public class LoginApiController {
     @Autowired
     private LoginService loginService;
