@@ -1,14 +1,15 @@
 package com.edu.booksearch.model.search.kakao;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
 public class KakaoApiResponseDto {
-    @JsonFormat(pattern = "documents")
+    @JsonProperty(value = "documents")
     private List<KakaoBookInfoDto> documents;
-    @JsonFormat(pattern = "meta")
+    @JsonProperty(value = "meta")
     private KakaoBookMetaDto meta;
 }

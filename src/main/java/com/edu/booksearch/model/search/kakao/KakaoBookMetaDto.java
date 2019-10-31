@@ -1,14 +1,15 @@
 package com.edu.booksearch.model.search.kakao;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 public class KakaoBookMetaDto  {
-    @JsonFormat(pattern = "total_count")
+    @JsonProperty(value = "total_count")
     int totalCount;
-    @JsonFormat(pattern = "pageable_count")
+    @JsonProperty(value = "pageable_count")
     int pageableCount;
-    @JsonFormat(pattern = "is_end")
+    @JsonProperty(value = "is_end")
     boolean isEnd;
 }

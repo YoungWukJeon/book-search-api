@@ -7,6 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PageController {
     @GetMapping(value = "/book/search")
     public String bookSearch() {
-        return "";
+        return "booksearch";
+    }
+
+    @GetMapping(value = "/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping(value = "/registration")
+    public String registration() {
+        return "registration";
     }
 }
