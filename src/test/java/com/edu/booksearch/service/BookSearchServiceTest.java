@@ -4,13 +4,20 @@ import com.edu.booksearch.model.search.*;
 import com.edu.booksearch.model.search.kakao.KakaoApiResponseDto;
 import com.edu.booksearch.model.search.kakao.KakaoBookInfoDto;
 import com.edu.booksearch.model.search.kakao.KakaoBookMetaDto;
+import com.edu.booksearch.persistent.h2.entity.SearchCountEntity;
+import com.edu.booksearch.persistent.h2.entity.UserEntity;
+import com.edu.booksearch.persistent.h2.repository.SearchCountRepository;
+import com.edu.booksearch.persistent.h2.repository.SearchHistoryRepository;
+import com.edu.booksearch.persistent.h2.repository.UserRepository;
 import com.edu.booksearch.util.DateTimeUtil;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,12 +26,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class BookSearchServiceTest {
-
     private KakaoApiResponseDto kakaoApiResponseDto;
-    private DateTimeUtil dateTimeUtil = new DateTimeUtil();
 
     @Autowired
     private BookSearchService bookSearchService;
+    @Autowired
+    private SearchHistoryRepository searchHistoryRepository;
+    @Autowired
+    private SearchCountRepository searchCountRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @BeforeEach
     void setUp() {
@@ -82,5 +93,43 @@ class BookSearchServiceTest {
         List<SearchResultDto> actualResult = ReflectionTestUtils.invokeMethod(bookSearchService, "extractSearchResults", kakaoApiResponseDto);
 
         assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    @Transactional
+    void 검색_기록_입력() {
+        long userNo = 1L;
+        String query = "미움받을 용기";
+
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId("testUser");
+        userEntity.setPassword("testPass");
+
+        ReflectionTestUtils.invokeMethod(bookSearchService, "recordSearchHistory", userNo, query, userEntity);
+        userEntity.getSearchHistoryEntities().forEach(System.out::println);
+    }
+
+    @Test
+    @Transactional
+    void 로그인된_사용자의_책_검색_요청() {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId("testUser");
+        userEntity.setPassword("testPass");
+        userRepository.save(userEntity);
+
+        BookSearchRequestDto bookSearchRequestDto = new BookSearchRequestDto();
+        bookSearchRequestDto.setQuery("미움받을 용기");
+
+        BookSearchResponseDto bookSearchResponseDto = bookSearchService.searchBook(bookSearchRequestDto, 1L);
+        userEntity.getSearchHistoryEntities().forEach(System.out::println);
+    }
+
+    @Test
+    void 없는_사용자의_책_검색_요청() {
+        Assertions.assertThrows(RuntimeException.class, () -> {
+            BookSearchRequestDto bookSearchRequestDto = new BookSearchRequestDto();
+            bookSearchRequestDto.setQuery("미움받을 용기");
+            bookSearchService.searchBook(bookSearchRequestDto, 1L);
+        });
     }
 }

@@ -8,10 +8,7 @@ import com.edu.booksearch.service.BookSearchCountService;
 import com.edu.booksearch.service.BookSearchHistoryService;
 import com.edu.booksearch.service.BookSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,13 +21,18 @@ public class BookSearchApiController {
     @Autowired
     private BookSearchCountService bookSearchCountService;
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     public BookSearchResponseDto searchBook(@RequestParam BookSearchRequestDto bookSearchRequestDto) {
         return bookSearchService.searchBook(bookSearchRequestDto);
     }
 
-    @GetMapping("/user/{userNo}/history")
-    public List<BookSearchHistoryResponseDto> getSearchHistory(@PathVariable long userNo) {
+    @PostMapping("/search")
+    public BookSearchResponseDto searchBook(@RequestParam BookSearchRequestDto bookSearchRequestDto, @RequestBody long userNo) {
+        return bookSearchService.searchBook(bookSearchRequestDto, userNo);
+    }
+
+    @PostMapping("/history/user")
+    public List<BookSearchHistoryResponseDto> getSearchHistory(@RequestBody long userNo) {
         return bookSearchHistoryService.getSearchHistory(userNo);
     }
 

@@ -16,5 +16,5 @@ public class SearchCountEntity {
     private String keyword;
 
     @Column(name = "count", nullable = false)
-    private long count = 0;
+    private long count = 1;
 }
