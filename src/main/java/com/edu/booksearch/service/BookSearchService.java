@@ -54,10 +54,9 @@ public class BookSearchService {
         searchHistoryEntity.setKeyword(query);
         searchHistoryEntity.setSearchDateTime(LocalDateTime.now());
         userEntity.getSearchHistoryEntities().add(searchHistoryEntity);
-//        searchHistoryRepository.save(searchHistoryEntity);
+        userRepository.saveAndFlush(userEntity);
     }
 
-    @Transactional
     private void recordSearchCount(String query) {
         Optional<SearchCountEntity> savedSearchCountEntity = searchCountRepository.findById(query);
 

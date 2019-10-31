@@ -1,5 +1,6 @@
 package com.edu.booksearch.controller;
 
+import com.edu.booksearch.model.LoginRequestDto;
 import com.edu.booksearch.model.RegistrationResponseDto;
 import com.edu.booksearch.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class UserApiController {
     private UserService userService;
 
     @PostMapping(value = "")
-    public RegistrationResponseDto createUser(@RequestBody String id, @RequestBody String password) {
-        return userService.createUser(id, password);
+    public RegistrationResponseDto createUser(@RequestBody LoginRequestDto loginRequestDto) {
+        return userService.createUser(loginRequestDto.getId(), loginRequestDto.getPassword());
     }
 }

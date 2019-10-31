@@ -23,12 +23,12 @@ public class BookSearchApiController {
     private BookSearchCountService bookSearchCountService;
 
     @GetMapping("/search")
-    public BookSearchResponseDto searchBook(@RequestParam BookSearchRequestDto bookSearchRequestDto) {
+    public BookSearchResponseDto searchBook(@ModelAttribute BookSearchRequestDto bookSearchRequestDto) {
         return bookSearchService.searchBook(bookSearchRequestDto);
     }
 
     @PostMapping("/search")
-    public BookSearchResponseDto searchBook(@RequestParam BookSearchRequestDto bookSearchRequestDto, @RequestBody long userNo) {
+    public BookSearchResponseDto searchBook(@ModelAttribute BookSearchRequestDto bookSearchRequestDto, @RequestBody long userNo) {
         return bookSearchService.searchBook(bookSearchRequestDto, userNo);
     }
 

@@ -22,7 +22,7 @@ public class UserEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToMany(targetEntity = SearchHistoryEntity.class, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = SearchHistoryEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_no")
     private List<SearchHistoryEntity> searchHistoryEntities = new ArrayList<> ();
 }
