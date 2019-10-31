@@ -26,7 +26,6 @@ class BookSearchServiceTest {
     @Autowired
     private BookSearchService bookSearchService;
 
-
     @BeforeEach
     void setUp() {
         kakaoApiResponseDto = new KakaoApiResponseDto();

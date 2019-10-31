@@ -1,5 +1,6 @@
 package com.edu.booksearch.controller;
 
+import com.edu.booksearch.model.search.BookSearchHistoryResponseDto;
 import com.edu.booksearch.model.search.BookSearchRequestDto;
 import com.edu.booksearch.model.search.BookSearchResponseDto;
 import com.edu.booksearch.service.BookSearchService;
@@ -16,5 +17,10 @@ public class BookSearchApiController {
     @GetMapping("/search")
     public BookSearchResponseDto searchBook(@RequestParam BookSearchRequestDto bookSearchRequestDto) {
         return bookSearchService.searchBook(bookSearchRequestDto);
+    }
+
+    @GetMapping("/history")
+    public BookSearchHistoryResponseDto getSearchHistory(@RequestParam long userNo) {
+        return null;
     }
 }

@@ -33,6 +33,6 @@ class PasswordEncodingTest {
 
         String rawPassword2 = "testPass125!!";
 
-        assertTrue(passwordEncoding.matches(rawPassword2, encodedPassword1));
+        assertFalse(passwordEncoding.matches(rawPassword2, encodedPassword1));
     }
 }

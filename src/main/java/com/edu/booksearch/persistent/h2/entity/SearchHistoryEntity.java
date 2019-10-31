@@ -14,9 +14,8 @@ public class SearchHistoryEntity {
     @Column(name = "id")
     private long id;
 
-    @ManyToOne(targetEntity = UserEntity.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_no", nullable = false)
-    private UserEntity userEntity;
+    @Column(name ="user_no", nullable = false)
+    private Long userNo;
 
     @Column(name = "keyword", nullable = false)
     private String keyword;

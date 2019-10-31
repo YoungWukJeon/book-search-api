@@ -9,7 +9,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @SpringBootTest
 class SearchCountRepositoryTest {
@@ -19,12 +21,15 @@ class SearchCountRepositoryTest {
 
     @BeforeEach
     void setUp() {
+        List<SearchCountEntity> searchCountEntities = new ArrayList<> ();
+
         for (int i = 0; i < 6; ++i) {
             SearchCountEntity searchCountEntity = new SearchCountEntity();
             searchCountEntity.setKeyword("미움받을 용기" + i);
             searchCountEntity.setCount(10L * i);
-            searchCountRepository.save(searchCountEntity);
+            searchCountEntities.add(searchCountEntity);
         }
+        searchCountRepository.saveAll(searchCountEntities);
     }
 
     @Test
@@ -38,5 +43,4 @@ class SearchCountRepositoryTest {
         Pageable pageable = PageRequest.of(0, 5, sort);
         searchCountRepository.findAll(pageable).forEach(System.out::println);
     }
-
 }
